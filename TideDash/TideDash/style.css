@@ -1,0 +1,28 @@
+﻿#mapid { height: 100%;
+         width: 55%;
+         position: absolute;
+         left: 0;
+         margin: 0px;
+}
+.panel{
+    position: absolute;
+    right: 0;
+    height:100%;
+    width:45%;
+    background-color:cornflowerblue;
+    z-index: 1;
+    box-shadow: 8px 0px 5px -5px #999, -6px 0px 5px -5px #999;
+
+}
+body{
+    overflow: hidden;
+    margin: 0px;
+}
+.head{
+    width: 100%;
+    height: 5%;
+    text-align:center;
+    color:white;
+    font-size:30pt;
+    font-family:Aileron;
+}
