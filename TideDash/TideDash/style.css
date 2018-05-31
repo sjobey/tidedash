@@ -10,9 +10,12 @@
     height:100%;
     width:45%;
     background-color:cornflowerblue;
-    z-index: 1;
-    box-shadow: 8px 0px 5px -5px #999, -6px 0px 5px -5px #999;
+    z-index: 1001;
+    box-shadow: 8px 0px 5px -5px #444, -6px 0px 5px -5px #444;
 
+}
+.panel.expanded{
+    width: 95%;
 }
 body{
     overflow: hidden;
@@ -26,3 +29,73 @@ body{
     font-size:30pt;
     font-family:Aileron;
 }
+  .brush{
+    fill: white;
+    fill-opacity: .225;
+  }
+
+  .area {
+  fill: rgba(255, 255, 255, 0.4);
+  clip-path: url(#clip);
+}
+
+  .line{
+      fill: none;
+      stroke-width: 2px;
+  }
+  .axis {
+    font: 10px sans-serif;
+    color: #fff;
+    z-index: 3;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #fff;
+    shape-rendering: crispEdges;
+    z-index: 3;
+    
+  }
+
+  .axis text{
+    fill: #fff;
+  }
+  
+  .brush .extent {
+    stroke: #fff;
+    fill-opacity: .125;
+    shape-rendering: crispEdges;
+    color: #fff;
+  }
+
+  .brushbar{
+      width: 100%;
+      height: 150px;
+      padding-left: 40px;
+      padding-bottom: 15px;
+  }
+
+  .expand{
+      width:85px;
+      height: 85px;
+      position:absolute;
+      right: 45%;
+      top: calc(50% - 42px);
+      z-index: 5000000;
+      filter: drop-shadow(2px 2px 2px #444);
+  }
+  .expand.expanded{
+      right:95%;
+  }
+  .expandIcon{
+      width:85px;
+      height: 85px;
+  }
+  .expandIcon.expanded{
+      transform: rotate(180deg);
+  }
+
+  .container{
+      margin-left: 40px;
+  }
