@@ -62,7 +62,5 @@ C:\Users\jlee\Documents\SGHDigitalLab_Local\Others\tidedash\TideDash\TideDash\bi
 C:\Users\jlee\Documents\SGHDigitalLab_Local\Others\tidedash\TideDash\TideDash\bin\Microsoft.ApplicationInsights.xml
 C:\Users\jlee\Documents\SGHDigitalLab_Local\Others\tidedash\TideDash\TideDash\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\jlee\Documents\SGHDigitalLab_Local\Others\tidedash\TideDash\TideDash\obj\Debug\TideDash.csprojResolveAssemblyReference.cache
-C:\Users\jlee\Documents\SGHDigitalLab_Local\Others\tidedash\TideDash\TideDash\obj\Debug\TideDash.csproj.CoreCompileInputs.cache
-C:\Users\jlee\Documents\SGHDigitalLab_Local\Others\tidedash\TideDash\TideDash\obj\Debug\TideDash.csproj.CopyComplete
 C:\Users\jlee\Documents\SGHDigitalLab_Local\Others\tidedash\TideDash\TideDash\obj\Debug\TideDash.dll
 C:\Users\jlee\Documents\SGHDigitalLab_Local\Others\tidedash\TideDash\TideDash\obj\Debug\TideDash.pdb
