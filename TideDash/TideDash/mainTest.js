@@ -3,262 +3,65 @@ var geocoder;
 var stations = [];
 var tideItems = [];
 var weatherItems = [];
-var mapstyle = [
-  {
-      "elementType": "geometry",
-      "stylers": [
-        {
-            "color": "#212121"
-        }
-      ]
-  },
-  {
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-            "visibility": "off"
-        }
-      ]
-  },
-  {
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-            "color": "#757575"
-        }
-      ]
-  },
-  {
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-            "color": "#212121"
-        }
-      ]
-  },
-  {
-      "featureType": "administrative",
-      "elementType": "geometry",
-      "stylers": [
-        {
-            "color": "#757575"
-        }
-      ]
-  },
-  {
-      "featureType": "administrative.country",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-            "color": "#9e9e9e"
-        }
-      ]
-  },
-  {
-      "featureType": "administrative.land_parcel",
-      "stylers": [
-        {
-            "visibility": "off"
-        }
-      ]
-  },
-  {
-      "featureType": "administrative.locality",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-            "color": "#bdbdbd"
-        }
-      ]
-  },
-  {
-      "featureType": "poi",
-      "elementType": "labels.text",
-      "stylers": [
-        {
-            "visibility": "off"
-        }
-      ]
-  },
-  {
-      "featureType": "poi",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-            "color": "#757575"
-        }
-      ]
-  },
-  {
-      "featureType": "poi.business",
-      "stylers": [
-        {
-            "visibility": "off"
-        }
-      ]
-  },
-  {
-      "featureType": "poi.park",
-      "elementType": "geometry",
-      "stylers": [
-        {
-            "color": "#83AE9B"
-        }
-      ]
-  },
-  {
-      "featureType": "poi.park",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-            "color": "#616161"
-        }
-      ]
-  },
-  {
-      "featureType": "poi.park",
-      "elementType": "labels.text.stroke",
-      "stylers": [
-        {
-            "color": "#1b1b1b"
-        }
-      ]
-  },
-  {
-      "featureType": "road",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-            "color": "#2c2c2c"
-        }
-      ]
-  },
-  {
-      "featureType": "road",
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-            "visibility": "off"
-        }
-      ]
-  },
-  {
-      "featureType": "road",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-            "color": "#8a8a8a"
-        }
-      ]
-  },
-  {
-      "featureType": "road.arterial",
-      "elementType": "geometry",
-      "stylers": [
-        {
-            "color": "#373737"
-        }
-      ]
-  },
-  {
-      "featureType": "road.highway",
-      "elementType": "geometry",
-      "stylers": [
-        {
-            "color": "#3c3c3c"
-        }
-      ]
-  },
-  {
-      "featureType": "road.highway.controlled_access",
-      "elementType": "geometry",
-      "stylers": [
-        {
-            "color": "#4e4e4e"
-        }
-      ]
-  },
-  {
-      "featureType": "road.local",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-            "color": "#616161"
-        }
-      ]
-  },
-  {
-      "featureType": "transit",
-      "stylers": [
-        {
-            "visibility": "off"
-        }
-      ]
-  },
-  {
-      "featureType": "transit",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-            "color": "#757575"
-        }
-      ]
-  },
-  {
-      "featureType": "water",
-      "elementType": "geometry",
-      "stylers": [
-        {
-            "color": "#000000"
-        }
-      ]
-  },
-  {
-      "featureType": "water",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-            "color": "#96ecf3"
-        },
-        {
-            "saturation": -50
-        },
-        {
-            "lightness": -15
-        }
-      ]
-  },
-  {
-      "featureType": "water",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-            "color": "#3d3d3d"
-        }
-      ]
-  }
-]
-//zahGGMnDWNrxNVgJrehLIVRaOhInVRQX noaa token
-function initMap() {
-    //geocoder = new google.maps.Geocoder();
-    
 
-   // map = new google.maps.Map(document.getElementById('map'), {
-   //     center: { lat: -34.397, lng: 150.644 },
-   //     zoom: 8
-   // });
-}
+var ghan = new GoogleMapAPIHandler();
+var maphan;
+//zahGGMnDWNrxNVgJrehLIVRaOhInVRQX noaa token
+
 $(document).ready(function () {
     //NOAATideRequest(NOAAendpoints.datacategories);
 
-    LoadNOAA_WaterlevelStation();
+    //LoadNOAA_WaterlevelStation();
     //NOAAWeatherrequest(NOAAendpoints.stations);
-});
 
+    maphan = new ghan.MapHandler();
+
+    var lats = [];
+    var lngs = [];
+    var contents = [];
+    $.getJSON("/data/waterlevelstation.json", function (data) {
+        data.stations.forEach(function (s) {
+            if (s.state == "RI") {
+                stations.push(s);
+
+                lats.push(s.lat);
+                lngs.push(s.lng);
+                contents.push(s.name);
+            }
+        });
+    }).then(function () {
+        maphan.DrawMap('map', 30, 30);
+        maphan.AddMarkers(lats, lngs, contents, stations, MarkerClick, MarkerMouseOver, MarkerMouseOut);
+        maphan.ZoomToFitToMarkers();
+        maphan.AddZoomEventFunction(ZoomEvent);
+    });
+});
+function ZoomEvent(zoomLev) {
+    //anywas I can get state size and link it to zoom lev?
+    console.log(zoomLev);
+}
+function MarkerClick(datum) {
+    console.log("clicked");
+}
+function MarkerMouseOver(datum) {
+    console.log("hovered");
+}
+function MarkerMouseOut(datum) {
+    console.log("out");
+}
+
+
+
+
+function ResetData() {
+    //stations by state should stay?... as the first screen is selecting a state
+    tideItems = [];
+    weatherItems = [];
+}
 function LoadNOAA_WaterlevelStation() {
     $.getJSON("/data/waterlevelstation.json", function (data) {
         data.stations.forEach(function (s) {
-            if (s.state == "MA") {
+            if (s.state == "RI") {
                 stations.push(s);
             }
         });
@@ -288,6 +91,8 @@ function LoadNOAA_WaterlevelStation() {
                     infowindow.setContent(stations[i].name);
                     infowindow.open(map, marker);
 
+                    //re organize?
+                    ResetData();
                     NOAATideRequest(stations[i], 7, eNOAAproduct.water_level_predictions, eNOAAdatum.mean_tide_level);
                     GovWeatherRequest(stations[i], 7);
                 }
@@ -303,6 +108,28 @@ function LoadNOAA_WaterlevelStation() {
 
     });
 }
+
+//
+//ajax is thenable..so we can make many ajax calls > collect all data > then plot
+//example of multi thenable
+//let defs = [];
+//for (let i = 0; i < names.length; ++i) {
+//    defs.push(
+//        $.getJSON(url + names[i] + '.json', (jm) => {
+//            that.LoadJsonMesh(jm, i, objs, asVisible);
+//        }).then(() => {
+//            console.log((i + 1) + "/" + names.length);
+//        })
+//    );
+//}
+//$.when.apply($, defs).then(() => {
+//    if (fn instanceof Function) {
+//        fn();
+//    }
+//})
+function GetTideDashData() {
+    var deferreds = [];
+}
 function GovWeatherRequest(station, range) {
     var ran = GetTimeRange(range);
     var url = "https://api.weather.gov/points/";
@@ -317,7 +144,7 @@ function GovWeatherRequest(station, range) {
                 url: w.properties.forecastHourly,
                 success: function (wd) {
                     wd.properties.periods.forEach(function (pd) {
-                        
+                        //other weather items from another function?
                         var weatherItem = {
                             timeFrom: new Date(new Date(pd.startTime).toLocaleString()),//timezone check GMT to local time...
                             timeTo: new Date(new Date(pd.endTime).toLocaleString()),//timezone check
