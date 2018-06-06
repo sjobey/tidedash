@@ -1,6 +1,8 @@
 ﻿var map;
 var geocoder;
 var stations = [];
+var tideItems = [];
+var weatherItems = [];
 var mapstyle = [
   {
       "elementType": "geometry",
@@ -286,7 +288,8 @@ function LoadNOAA_WaterlevelStation() {
                     infowindow.setContent(stations[i].name);
                     infowindow.open(map, marker);
 
-                    NOAATideRequest(stations[i], 7, eNOAAproduct.air_temperature);
+                    NOAATideRequest(stations[i], 7, eNOAAproduct.water_level_predictions, eNOAAdatum.mean_tide_level);
+                    GovWeatherRequest(stations[i], 7);
                 }
             })(marker, i));
 
@@ -300,6 +303,39 @@ function LoadNOAA_WaterlevelStation() {
 
     });
 }
+function GovWeatherRequest(station, range) {
+    var ran = GetTimeRange(range);
+    var url = "https://api.weather.gov/points/";
+    var endpoint = station.lat + "," + station.lng;
+    var urlNext = url + endpoint;
+    //installed addin for "allow control allow origin" Hopefully this only needs for local host debug
+    //must enable cache?
+    $.ajax({
+        url: urlNext,
+        success: function (w) {
+            $.ajax({
+                url: w.properties.forecastHourly,
+                success: function (wd) {
+                    wd.properties.periods.forEach(function (pd) {
+                        
+                        var weatherItem = {
+                            timeFrom: new Date(new Date(pd.startTime).toLocaleString()),//timezone check GMT to local time...
+                            timeTo: new Date(new Date(pd.endTime).toLocaleString()),//timezone check
+                            temp: pd.temperature,
+                            windSpeed: pd.windSpeed,
+                            windDirection: pd.windDirection,
+                            shortForecast: pd.shortForecast
+                        }
+                        weatherItems.push(weatherItem);
+                    });
+                }
+            });
+        },
+        error: ajaxFailed
+    }).then(function () {
+        console.log(weatherItems);
+    });
+}
 function NOAATideRequest(station, range, product, datum) {
     var ran = GetTimeRange(range);
     var url = "https://tidesandcurrents.noaa.gov/api/datagetter?";
@@ -307,46 +343,16 @@ function NOAATideRequest(station, range, product, datum) {
     if (datum != undefined) {
         endpoints += "&datum=" + datum;
     }
-    endpoints += "&units=english&time_zone=gmt&application=ports_screen&format=json";
+    endpoints += "&units=english&time_zone=lst_ldt&application=ports_screen&format=json";
     $.ajax({
         url: url + endpoints,
         cache: false,
         dataType: "json",
         success: function (d) {
-            console.log(d.data);
+            console.log(d.predictions);
         },
         error: ajaxFailed
     });
-}
-function ajaxFailed(e) {
-    $('#test').html(e.responseText);
-}
-function getCustomMarker(color, stroke, strokeWeight, scale) {
-    return {
-        path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
-        fillColor: color,
-        fillOpacity: 1,
-        strokeColor: stroke,
-        strokeWeight: strokeWeight,
-        scale: scale,
-    };
-}
-Date.prototype.yyyymmdd = function () {
-    var mm = this.getMonth() + 1; // getMonth() is zero-based
-    var dd = this.getDate();
-
-    return [this.getFullYear(),
-            (mm > 9 ? '' : '0') + mm,
-            (dd > 9 ? '' : '0') + dd
-    ].join('');
-};
-function GetTimeRange(ran) {
-    var now = new Date();
-    var lower = now.yyyymmdd() + " 00:00";
-    var later = new Date(now);
-    later.setDate(later.getDate() + ran);
-    var upper = later.yyyymmdd() + " 00:00";
-    return [lower, upper];
 }
 var eNOAAproduct = {
     water_level: "water_level",
@@ -381,26 +387,38 @@ var eNOAAdatum = {
     north_american_vertical_datum: "NAVD",
     station_datum: "STND",
 }
-/*
-function NOAAWeatherrequest(endpoint) {
-    var noaaToken = "zahGGMnDWNrxNVgJrehLIVRaOhInVRQX";
-    var url = "https://www.ncdc.noaa.gov/cdo-web/api/v2/";
-
-    $.ajax({
-        url: url + endpoint + "/?limit=100&id=8454000",
-        headers: {
-            token:noaaToken
-        },
-        cache: false,
-        dataType: "json",
-        success: NOAAWeatherDataGotten,
-        error: ajaxFailed
-    });
+//google maps
+function getCustomMarker(color, stroke, strokeWeight, scale) {
+    return {
+        path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z M -2,-30 a 2,2 0 1,1 4,0 2,2 0 1,1 -4,0',
+        fillColor: color,
+        fillOpacity: 1,
+        strokeColor: stroke,
+        strokeWeight: strokeWeight,
+        scale: scale,
+    };
 }
-function NOAAWeatherDataGotten(d) {
-    var meta = d.metadata;
-    var results = d.results;
-    console.log(results);
+//supports
+function ajaxFailed(e) {
+    $('#test').html(e.responseText);
 }
 
-*/
+Date.prototype.yyyymmdd = function () {
+    var mm = this.getMonth(); // getMonth() is zero-based
+    var dd = this.getDate();
+
+    return [this.getFullYear(),
+            (mm > 9 ? '' : '0') + mm,
+            (dd > 9 ? '' : '0') + dd
+    ].join('');
+};
+function GetTimeRange(ran) {
+    var now = Date.now();
+    var sooner = new Date(now);
+    var lower = sooner.yyyymmdd() + " 00:00";
+    var later = new Date(now);
+    later.setDate(later.getDate() + ran);
+    var upper = later.yyyymmdd() + " 00:00";
+    return [lower, upper];
+}
+
