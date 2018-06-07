@@ -95,20 +95,19 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\left.png" />
-    <Content Include="data\right.png" />
     <Content Include="data\waterlevelstation.json" />
     <Content Include="data\mapStyle.json" />
     <None Include="scripts\_references.js" />
     <Content Include="scripts\GoogleMapAPIHandler.js" />
+    <Content Include="scripts\NOAADataHandler.js" />
+    <Content Include="scripts\SVGHandler.js" />
+    <Content Include="scripts\WaveLoader.js" />
     <Content Include="view.html" />
     <Content Include="mainTest.js" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="data\StriperFishingSpotsMA.csv" />
-    <Content Include="data\UM8026.csv" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -119,12 +118,11 @@
   <ItemGroup>
     <Content Include="indexBackup.html" />
     <Content Include="main.js" />
-    <Content Include="scripts\ai.0.15.0-build58334.js" />
-    <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="scripts\d3.min.js" />
     <Content Include="scripts\DataVis.js" />
     <Content Include="scripts\jquery-3.3.1.min.js" />
-    <Content Include="style.css" />
+    <Content Include="views\PageStyle.css" />
+    <Content Include="views\WaveLoaderStyle.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

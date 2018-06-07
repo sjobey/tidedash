@@ -1,10 +1,11 @@
 ﻿var GoogleMapAPIHandler = (function () {
     var map = null;
     var markers = [];
+    
     var mapAttributes = {
         mapStyle: "dark&blue",
-        markerColor: "#F67280",
-        markerStrokeColor: "#355C7D",
+        markerColor: "#e7be8e",
+        markerStrokeColor: "#002b32",
         markerStrokeWeight: 1,
         markerScale : 1
     }
@@ -36,7 +37,7 @@
                         infowindow.open(map, marker);
                         
                         if (clickFn != undefined) {
-                            clickFn(marker.datum);
+                            clickFn(map, marker);
                         }
                     }
                 })(marker, i));
@@ -332,6 +333,8 @@
     ]
 
     return {
+        map: map,
+
         mapAttributes: mapAttributes,
         MapHandler: MapHandler,
         PlaceHandler:PlaceHandler

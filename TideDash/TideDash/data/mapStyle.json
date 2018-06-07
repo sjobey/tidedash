@@ -213,13 +213,13 @@
     "elementType": "geometry.fill",
     "stylers": [
       {
-        "color": "#96ecf3"
+        "color": "#8dddd4"
       },
       {
-        "saturation": -50
+        "saturation": 0
       },
       {
-        "lightness": -15
+        "lightness": 0
       }
     ]
   },
