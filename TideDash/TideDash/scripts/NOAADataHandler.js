@@ -69,24 +69,35 @@
         });
     }
     var ParseWeatherData = function (dataCollected, wdata) {
-        
         temps = [];
         windspeeds = [];
         winddirs = [];
         shorts = [];
         wdata.forEach(function (pd) {
-            //other weather items from another function?
-            var weatherItem = {
-                timeFrom: new Date(new Date(pd.startTime).toLocaleString()),//timezone check GMT to local time...
-                timeTo: new Date(new Date(pd.endTime).toLocaleString()),//timezone check
-                temp: pd.temperature,
-                windSpeed: pd.windSpeed,
-                windDirection: pd.windDirection,
-                shortForecast: pd.shortForecast
-            }
-            weatherItems.push(weatherItem);
+            var dateStr = new Date(pd.startTime).toLocaleString().replace(/[^A-Za-z 0-9 \.,\?""!@#\$%\^&\*\(\)-_=\+;:<>\/\\\|\}\{\[\]`~]*/g, '');
+            var time = new Date(dateStr);
+            var timeIn = MatchNOAATimeFormat(time);
+            temps.push({
+                t: timeIn,
+                v: pd.temperature
+            });
+            windspeeds.push({
+                t: timeIn,
+                v: pd.windSpeed
+            });
+            winddirs.push({
+                t: timeIn,
+                v: pd.windDirection
+            });
+            shorts.push({
+                t: timeIn,
+                v: pd.shortForecast
+            });
         });
-        return weatherItems;
+        dataCollected.airTemperatureForecast = temps;
+        dataCollected.windSpeedForecast = windspeeds;
+        dataCollected.windDirectionForecast = winddirs;
+        dataCollected.shortForcast = shorts;
     }
     var getMoonPhase = function(year, month, day) {
         var c = e = jd = b = 0;
@@ -160,6 +171,26 @@
         var later = new Date();
         later.setDate(later.getDate() + ranLater);
         return [yyyymmdd(early), yyyymmdd(later)];
+    }
+    var MatchNOAATimeFormat = function (d) {
+        var date = d.getDate();
+        if (date.toString().length == 1) date = "0" + date;
+        var month = d.getMonth() + 1; //Months are zero based
+        if(month.toString().length == 1) month = "0" + month;
+        var year = d.getFullYear();
+        var hr = d.getHours();
+        if (hr.toString().length == 1) hr = "0" + hr;
+        var min = d.getMinutes();
+        if (min.toString().length == 1) min = "0" + min;
+        return year + "-" + month + "-" + date + " " + hr + ":" + min;
+    }
+    var GetNOAATimeFormatParser = function () {
+        return "%Y-%m-%d %H:%M";
+        //function Parser(d) {
+        //    var parseDate = d3.time.format("%m/%d/%Y %H:%M").parse;
+        //    var entry = { date: parseDate(d.Time), val: parseFloat(d.VertPPV) }; // turn the date string into a date object
+        //    return entry;
+        //} 
     }
     var ajaxFailed = function (f) {
         console.log(f);
