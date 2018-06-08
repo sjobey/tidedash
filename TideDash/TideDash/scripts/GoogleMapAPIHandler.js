@@ -1,6 +1,7 @@
 ﻿var GoogleMapAPIHandler = (function () {
     var map = null;
     var markers = [];
+    var lastBoundZoom = 0;
     
     var mapAttributes = {
         mapStyle: "dark&blue",
@@ -21,7 +22,43 @@
                 styles: mapstyle
             });
         }
-        this.AddMarkers = function (lats, lngs, contents, data, clickFn, overFn, outFn) {
+        this.AddMarkers = function (data, clickFn, overFn, outFn) {
+            for (i = 0; i < data.length; i++) {
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(data[i].lat, data[i].lng),
+                    map: map,
+                    icon: GetCustomMarker(mapAttributes.markerColor, mapAttributes.markerStrokeColor, mapAttributes.markerStrokeWeight, mapAttributes.markerScale)
+                });
+                marker.datum = data[i];
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(data[i].name +"</br>" + data[i].state);
+                        infowindow.open(map, marker);
+
+                        if (clickFn != undefined) {
+                            clickFn(map, marker);
+                        }
+                    }
+                })(marker, i));
+                google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+                    return function () {
+                        infowindow.setContent(data[i].name + "</br>" + data[i].state);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+                //UX question... how about show all names as default?
+                // google.maps.event.addListener(marker, 'mouseout', (function (marker, i) {
+                //     return function () {
+                //         //what if I want to keep clicked window?...
+                //         infowindow.close();
+                //     }
+                // })(marker, i));
+
+                markers.push(marker);
+            }
+        }
+        this.AddMarkersDEF = function (lats, lngs, contents, data, clickFn, overFn, outFn) {
             if (lats.length != lngs.length) return;
             for (i = 0; i < lats.length; i++) {
                 var marker = new google.maps.Marker({
@@ -58,12 +95,15 @@
                markers.push(marker);
             }
         }
-        this.ZoomToFitToMarkers = function () {
+        this.ZoomToFitToMarkers = function (Fn) {
             var bounds = new google.maps.LatLngBounds();
             for (var i = 0; i < markers.length; i++) {
                 bounds.extend(markers[i].getPosition());
             }
             map.fitBounds(bounds);
+            lastBoundZoom = map.getZoom();
+            
+            if (Fn != undefined) Fn(lastBoundZoom);
         }
         this.RemoveAllMarkers = function() {
             for (i = 0; i < markers.length; i++) {
@@ -75,8 +115,8 @@
         this.AddZoomEventFunction = function (eFn) {
             if (eFn != undefined) {
                 google.maps.event.addListener(map, 'zoom_changed', function () {
-                    zoomLevel = map.getZoom();
-                    eFn(zoomLevel);
+                    currentZoom = map.getZoom();
+                    eFn(currentZoom, lastBoundZoom);
                 });
             }
         }
@@ -333,8 +373,6 @@
     ]
 
     return {
-        map: map,
-
         mapAttributes: mapAttributes,
         MapHandler: MapHandler,
         PlaceHandler:PlaceHandler

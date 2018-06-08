@@ -50,6 +50,8 @@
                     var levels = wl[0].data;
                     var waterTemp = wt[0].data;
                     var airTemp = at[0].data;
+
+                    if (airTemp == undefined) airTemp = at[0].error.message;
                     if (predictions == undefined) predictions = wp[0].error.message;
                     if (levels == undefined) levels = wl[0].error.message;
                     if (waterTemp == undefined) waterTemp = wt[0].error.message;

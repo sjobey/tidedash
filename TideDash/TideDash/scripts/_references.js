@@ -7,4 +7,5 @@
 /// <reference path="jquery-3.3.1.min.js" />
 /// <reference path="noaadatahandler.js" />
 /// <reference path="svghandler.js" />
+/// <reference path="ustates.js" />
 /// <reference path="waveloader.js" />

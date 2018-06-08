@@ -19,6 +19,7 @@
             this.params = params;
             this.parse = parse;
             this.shapeType = "rect";
+            
             var colour = d3.scale.ordinal()
                 .range(params.colorRange);
 
