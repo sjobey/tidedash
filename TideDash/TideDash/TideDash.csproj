@@ -95,8 +95,10 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\back.png" />
+    <Content Include="data\slide.png" />
+    <Content Include="data\slideY.png" />
     <Content Include="data\usMap.png" />
+    <Content Include="data\usMapY.png" />
     <Content Include="data\waterlevelstation.json" />
     <Content Include="data\mapStyle.json" />
     <None Include="scripts\_references.js" />

@@ -106,12 +106,18 @@
             for (var i = 0; i < markers.length; i++) {
                 bounds.extend(markers[i].getPosition());
             }
-            map.fitBounds(bounds);
+            if (markers.length > 1) {
+                map.fitBounds(bounds);
+            }
+            else if (markers.length == 1) {
+                map.setCenter(bounds.getCenter());
+                map.setZoom(11);
+            }
             lastBoundZoom = map.getZoom();
-            
+           
             if (Fn != undefined) Fn(lastBoundZoom);
         }
-        this.RemoveAllMarkers = function() {
+        this.RemoveAllMarkers = function () {
             for (i = 0; i < markers.length; i++) {
                 markers[i].setMap(null);
             }
