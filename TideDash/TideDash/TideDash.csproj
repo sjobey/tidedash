@@ -95,13 +95,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\back.png" />
+    <Content Include="data\usMap.png" />
     <Content Include="data\waterlevelstation.json" />
     <Content Include="data\mapStyle.json" />
     <None Include="scripts\_references.js" />
     <Content Include="scripts\GoogleMapAPIHandler.js" />
     <Content Include="scripts\NOAADataHandler.js" />
-    <Content Include="scripts\SVGHandler.js" />
-    <Content Include="scripts\uStates.js" />
+    <Content Include="scripts\USMapHandler.js" />
     <Content Include="scripts\WaveLoader.js" />
     <Content Include="view.html" />
     <Content Include="mainTest.js" />

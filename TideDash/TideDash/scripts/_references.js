@@ -6,6 +6,5 @@
 /// <reference path="googlemapapihandler.js" />
 /// <reference path="jquery-3.3.1.min.js" />
 /// <reference path="noaadatahandler.js" />
-/// <reference path="svghandler.js" />
-/// <reference path="ustates.js" />
+/// <reference path="usmaphandler.js" />
 /// <reference path="waveloader.js" />

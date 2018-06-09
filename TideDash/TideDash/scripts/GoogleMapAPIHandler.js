@@ -19,10 +19,16 @@
                 zoom: zoom,
                 center: new google.maps.LatLng(lat, lng),
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
-                styles: mapstyle
+                styles: mapstyle,
+                streetViewControl: true,
+                streetViewControlOptions: {
+                    position: google.maps.ControlPosition.LEFT_TOP
+                },
+                zoomControl: false,
             });
         }
         this.AddMarkers = function (data, clickFn, overFn, outFn) {
+            this.RemoveAllMarkers();
             for (i = 0; i < data.length; i++) {
                 var marker = new google.maps.Marker({
                     position: new google.maps.LatLng(data[i].lat, data[i].lng),
