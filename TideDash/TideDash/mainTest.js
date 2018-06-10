@@ -109,8 +109,8 @@ function GoogleMapDashAnimation(smallMap) {
         $('#dash').css({ width: '70%' });
     }
     else {
-        $('#map').css({ width: 'calc(100vw - 320px)' });
-        $('#dash').css({ width: '320px' });
+        $('#map').css({ width: 'calc(100vw - 340px)' });
+        $('#dash').css({ width: '340px' });
     }
     setTimeout(function () {
         $('#map').css({

@@ -5,8 +5,8 @@
 #map {
     height: 100%;
     position: absolute;
-    width: calc(100vw - 320px);
-    max-width:calc(100vw - 320px);
+    width: calc(100vw - 340px);
+    max-width:calc(100vw - 340px);
     opacity: 0.0;
 
 }
@@ -14,8 +14,8 @@
     height: 100%;
     position: absolute;
     right:0px;
-    width:320px;
-    min-width:320px;
+    width:340px;
+    min-width:340px;
     background: #212121 !important;    
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -112,8 +112,9 @@ html, body {
     font-weight: 400;
 }
 .modeBttn{
-    position:absolute;
-    bottom:60px;
+    position:relative;
+    top:35%;
+    left:-25px;
     margin-bottom:40px;
     z-index:8;
     -webkit-transition: all 0.5s ease-in-out;
@@ -124,11 +125,9 @@ html, body {
 .usMapBttn {
     opacity:0.0;
     pointer-events:none;
-    left:30px;
 }
 .opendashBttn{
     opacity:0.0;
-    left:90px;
     pointer-events:none;
 }
 .usMapBttn:hover,
