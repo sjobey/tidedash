@@ -98,6 +98,12 @@ function USMapDashTransition(toUSMap) {
     }
 }
 function GoogleMapDashAnimation(smallMap) {
+    $('#map').css({
+        '-webkit-transition': 'all 0.5s ease-in-out',
+        '-moz-transition': 'all 0.5s ease-in-out',
+        '-o-transition': 'all 0.5s ease-in-out',
+        'transition': 'all 0.5s ease-in-out'
+    });
     if (smallMap) {
         $('#map').css({ width: '30%' });
         $('#dash').css({ width: '70%' });
@@ -106,6 +112,14 @@ function GoogleMapDashAnimation(smallMap) {
         $('#map').css({ width: 'calc(100vw - 320px)' });
         $('#dash').css({ width: '320px' });
     }
+    setTimeout(function () {
+        $('#map').css({
+            '-webkit-transition': '',
+            '-moz-transition': '',
+            '-o-transition': '',
+            'transition': ''
+        })
+    }, 800);
 }
 function BttnActions() {
     $('.usMapBttn').click(function () {
@@ -114,7 +128,6 @@ function BttnActions() {
     $('.opendashBttn').click(function () {
         GoogleMapDashAnimation(false);
         BttnToggle('opendashBttn', false);
-        
     });
 }
 function BttnToggle(className, on) {
