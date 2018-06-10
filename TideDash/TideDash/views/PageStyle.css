@@ -1,9 +1,12 @@
 ﻿/* Always set the map height explicitly to define the size of the div
- * element that contains the map. */
+ * element that contains the map. 
+    //300x250, 300x600, 336x280 or 728x90 good performing google ad sizes
+*/
 #map {
     height: 100%;
     position: absolute;
-    width: 80%;
+    width: calc(100vw - 320px);
+    max-width:calc(100vw - 320px);
     opacity: 0.0;
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
@@ -14,12 +17,21 @@
     height: 100%;
     position: absolute;
     right:0px;
-    width:20%;
+    width:320px;
+    min-width:320px;
     background: #212121 !important;    
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
+}
+#adTest1{
+    position:absolute;
+    right:10px;
+    top:10px;
+    width:300px;
+    height:600px;
+    background-color:aqua;
 }
 html, body {
     font-family: 'Lato', sans-serif;
@@ -90,7 +102,7 @@ html, body {
     position: absolute;
     bottom: 18px;
     left: 30px;
-    color: #212121;
+    color: #223E3B;
     font-size:15px;
     font-weight: 400;
 }
@@ -103,9 +115,8 @@ html, body {
     font-weight: 400;
 }
 .modeBttn{
-    position:relative;
-    left:-25px;
-    top:38%;
+    position:absolute;
+    bottom:60px;
     margin-bottom:40px;
     z-index:8;
     -webkit-transition: all 0.5s ease-in-out;
@@ -113,9 +124,14 @@ html, body {
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 }
-.usMapBttn,
+.usMapBttn {
+    opacity:0.0;
+    pointer-events:none;
+    left:30px;
+}
 .opendashBttn{
     opacity:0.0;
+    left:90px;
     pointer-events:none;
 }
 .usMapBttn:hover,

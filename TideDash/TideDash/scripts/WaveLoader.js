@@ -2,6 +2,8 @@
     this.AddLoader = function (jqObj) {
         var con = $('<div></div>').addClass('loadContainer');
         var loader = $('<div></div>').addClass('loader');
+        var loadingTx = $('<div></div>').addClass('loadingTx').html("Loading Station Data... Please Wait :)");
+        loader.append(loadingTx);
         var top = $('<div></div>').addClass('loading bottom');
         var mid = $('<div></div>').addClass('loading mid');
         var bottom = $('<div></div>').addClass('loading top');

@@ -26,6 +26,7 @@
                 },
                 zoomControl: false,
             });
+
         }
         this.AddMarkers = function (data, clickFn, overFn, outFn) {
             this.RemoveAllMarkers();
@@ -47,9 +48,11 @@
                         }
                     }
                 })(marker, i));
+
+                var test = $('<img src="data/usMapY.png" height="50" />');
                 google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
                     return function () {
-                        infowindow.setContent(data[i].name + "</br>" + data[i].state);
+                        infowindow.setContent(data[i].name + ", " + data[i].state);
                         infowindow.open(map, marker);
                     }
                 })(marker, i));

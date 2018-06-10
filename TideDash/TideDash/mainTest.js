@@ -9,6 +9,7 @@ var ghan = new GoogleMapAPIHandler();
 var noaa = new NOAADataHandler();
 var maphan;
 
+
 $(document).ready(function () {
     loader.AddLoader($('body'));
     maphan = new ghan.MapHandler();
@@ -102,8 +103,8 @@ function GoogleMapDashAnimation(smallMap) {
         $('#dash').css({ width: '70%' });
     }
     else {
-        $('#map').css({ width: '80%' });
-        $('#dash').css({ width: '20%' });
+        $('#map').css({ width: 'calc(100vw - 320px)' });
+        $('#dash').css({ width: '320px' });
     }
 }
 function BttnActions() {

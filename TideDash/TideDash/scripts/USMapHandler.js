@@ -67,7 +67,7 @@
                 return null;
             }
             else {
-                return "#e8e7d6";
+                return "#E7BE8E";
             }
         }
         var stations = data.slice(0);

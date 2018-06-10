@@ -98,7 +98,12 @@ body {
     animation: wave 1.1s infinite alternate ease-in-out;
     z-index:9;
 }
-
+.loadingTx{
+    position: relative;
+    text-align: center;
+    top: -15px;
+    color: #E7BE8E;
+}
 .loading:after,
 .loading:before {
     position: absolute;
