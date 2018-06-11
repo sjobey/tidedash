@@ -101,6 +101,7 @@
     <Content Include="data\usMapY.png" />
     <Content Include="data\waterlevelstation.json" />
     <Content Include="data\mapStyle.json" />
+    <Content Include="data\alertTest.json" />
     <None Include="scripts\_references.js" />
     <Content Include="scripts\GoogleMapAPIHandler.js" />
     <Content Include="scripts\NOAADataHandler.js" />

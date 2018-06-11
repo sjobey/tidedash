@@ -1,0 +1,110 @@
+﻿{
+    "@context": [
+        "https://raw.githubusercontent.com/geojson/geojson-ld/master/contexts/geojson-base.jsonld",
+        {
+            "wx": "https://api.weather.gov/ontology#",
+            "@vocab": "https://api.weather.gov/ontology#"
+        }
+    ],
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "id": "https://api.weather.gov/alerts/NWS-IDP-PROD-2895346-2645719",
+            "type": "Feature",
+            "geometry": {
+                "type": "Polygon",
+                "coordinates": [
+                    [
+                        [
+                            -92.859999999999999,
+                            43.210000000000001
+                        ],
+                        [
+                            -92.730000000000004,
+                            43.210000000000001
+                        ],
+                        [
+                            -92.549999999999997,
+                            43.009999999999998
+                        ],
+                        [
+                            -92.549999999999997,
+                            42.93
+                        ],
+                        [
+                            -92.730000000000004,
+                            43.039999999999999
+                        ],
+                        [
+                            -92.859999999999999,
+                            43.210000000000001
+                        ]
+                    ]
+                ]
+            },
+            "properties": {
+                "@id": "https://api.weather.gov/alerts/NWS-IDP-PROD-2895346-2645719",
+                "@type": "wx:Alert",
+                "id": "NWS-IDP-PROD-2895346-2645719",
+                "areaDesc": "Floyd, IA",
+                "geocode": {
+                    "UGC": [
+                        "IAC067"
+                    ],
+                    "SAME": [
+                        "019067"
+                    ]
+                },
+                "affectedZones": [
+                    "https://api.weather.gov/zones/county/IAC067"
+                ],
+                "references": [
+                    {
+                        "@id": "https://api.weather.gov/alerts/NWS-IDP-PROD-2893571-2644831",
+                        "identifier": "NWS-IDP-PROD-2893571-2644831",
+                        "sender": "w-nws.webmaster@noaa.gov",
+                        "sent": "2018-06-10T09:48:00-05:00"
+                    }
+                ],
+                "sent": "2018-06-10T21:51:00-05:00",
+                "effective": "2018-06-10T21:51:00-05:00",
+                "onset": "2018-06-10T21:51:00-05:00",
+                "expires": "2018-06-11T12:51:00-05:00",
+                "ends": "2018-06-12T01:00:00-05:00",
+                "status": "Actual",
+                "messageType": "Update",
+                "category": "Met",
+                "severity": "Severe",
+                "certainty": "Observed",
+                "urgency": "Immediate",
+                "event": "Flood Warning",
+                "sender": "w-nws.webmaster@noaa.gov",
+                "senderName": "NWS La Crosse WI",
+                "headline": "Flood Warning issued June 10 at 9:51PM CDT expiring June 12 at 1:00AM CDT by NWS La Crosse WI",
+                "description": "Minor flooding continues along the Cedar River at Charles City.\n\nRiver forecasts take into account both observed and forecast\nprecipitation.\nThe Flood Warning continues for\nThe Cedar River at Charles City.\n* until late Monday night...Or until the warning is cancelled.\n* At 9:30 PM Sunday the stage was 12.4 feet.\n* Flood stage is 12.0 feet.\n* Minor flooding is occurring and Minor flooding is forecast.\n* Forecast...The river will continue to fall...Dropping below flood\nstage by Monday morning.\n* Impact...At 12.0 feet...Barricading of streets begins, and the\nintersection of Riverside and North Illinois Streets may be\nflooded. Cable pedestrian bridge is closed.",
+                "instruction": "PRECAUTIONARY/PREPAREDNESS ACTIONS...\n\nDo not drive cars into flooded areas. Remember, it only takes two\nfeet of water to float most automobiles, including sport utility\nvehicles. Turn Around, Don't Drown!\n\nAdditional river and weather information is available at...\nhttp://www.weather.gov/lacrosse .",
+                "response": "Avoid",
+                "parameters": {
+                    "VTEC": [
+                        "/O.EXT.KARX.FL.W.0040.000000T0000Z-180612T0600Z/"
+                    ],
+                    "EAS-ORG": [
+                        "WXR"
+                    ],
+                    "PIL": [
+                        "ARXFLSARX"
+                    ],
+                    "BLOCKCHANNEL": [
+                        "CMAS",
+                        "EAS",
+                        "NWEM"
+                    ],
+                    "eventEndingTime": [
+                        "2018-06-12T01:00:00-05:00"
+                    ]
+                }
+            }
+        }
+    ],
+    "title": "Current watches, warnings, and advisories for Floyd County (IAC067) IA"
+}
