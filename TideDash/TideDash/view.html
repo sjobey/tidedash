@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>TideDASH</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="views/PageStyle.css" />
+    <link rel="stylesheet" href="views/WaveLoaderStyle.css" />
+
+    <script src="scripts/jquery-3.3.1.min.js"></script>
+    <script src="scripts/d3.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyAZhPQFudhWWxlkZQ5l5-ciZS9gIfSIUjI" type="text/javascript"></script>
+    <script src="scripts/USMapHandler.js"></script>
+    <script src="scripts/NOAADataHandler.js"></script>
+    <script src="scripts/GoogleMapAPIHandler.js"></script>
+    <script src="scripts/WaveLoader.js"></script>
+    <script src="mainTest.js"></script>
+
+</head>
+<body>
+    <div id="dash">
+        <div class="modeBttn usMapBttn">
+            <img src="data/usMapY.png" height="50" />
+        </div>
+        <div class="modeBttn opendashBttn">
+            <img src="data/slideY.png" height="50" />
+        </div>
+    </div>
+    <div class="shadow" id="map">
+
+    </div>
+    <div id="container" class="svg-container">
+        <svg id="svg-content"></svg>
+    </div>
+
+    <div class="brand-container">
+        <svg class="brand" width="100%" height="90px" preserveAspectRatio="none" viewBox="0 0 1290 99">
+            <path class="st0" d="M1290,9C1157,19,1091.3,33.3,837,25C654.6,19.1,389,2,0,7v94h1290V9z" />
+            <path class="st1" d="M1290,27.4C979,52,898,60,599,31C432.1,14.8,135.6,18.2,0,15v86h1290V27.4z" />
+            <path class="st2" d="M1290,39.6C979,59.1,860,61,561,38.1C394.1,25.3,135.6,35.5,0,33v68h1290V39.6z" />
+            <path class="st3" d="M1290,52.9C1093.6,69,1002,64,639,53.1C471.9,48.1,135.6,41.8,0,40v61h1290V52.9z" />
+        </svg>
+        <h2 class="brandTitle">tide<span style="color:#E7BE8E">DASH</span>.com</h2>
+        <p class="subTitle">
+            Tide Data Visualization
+             </p>
+        <p class="llc">infoDASH, LLC</p>
+    </div>
+
+    <div id="adTest1"></div>
+</body>
+</html>
