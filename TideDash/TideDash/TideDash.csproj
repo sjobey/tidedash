@@ -95,13 +95,20 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="data\m0.png" />
+    <Content Include="data\m1.png" />
+    <Content Include="data\m2.png" />
+    <Content Include="data\m3.png" />
+    <Content Include="data\m4.png" />
+    <Content Include="data\m5.png" />
+    <Content Include="data\m6.png" />
+    <Content Include="data\m7.png" />
     <Content Include="data\slide.png" />
     <Content Include="data\slideY.png" />
     <Content Include="data\usMap.png" />
     <Content Include="data\usMapY.png" />
     <Content Include="data\waterlevelstation.json" />
     <Content Include="data\mapStyle.json" />
-    <Content Include="data\alertTest.json" />
     <None Include="scripts\_references.js" />
     <Content Include="scripts\GoogleMapAPIHandler.js" />
     <Content Include="scripts\NOAADataHandler.js" />
